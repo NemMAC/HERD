@@ -78,11 +78,13 @@ class About(webapp2.RequestHandler):
 # DATASTORE
 class Store(webapp2.RequestHandler):
     def post(self):
+        pass
 
 
 app = webapp2.WSGIApplication([
 ('/', Login),
 ('/map', Map),
-('datastore', Store),
+('/about', About),
+('/datastore', Store)
 
 ], debug=True)
