@@ -60,6 +60,13 @@ class AdminPage(webapp2.RequestHandler):
         else:
             self.response.write('You are not logged in.')
 
+# MAP
+
+class Map(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('map.html')
+        self.response.out.write(template.render())
+
 
 app = webapp2.WSGIApplication([
 ('/', Login),
