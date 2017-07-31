@@ -24,6 +24,10 @@ import logging
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
+"""
+Milans Space. Dont touch.
+
+"""
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
