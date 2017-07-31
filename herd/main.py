@@ -23,9 +23,6 @@ import urllib2
 import logging
 gangshit
 
-jinja_environment = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
-
 # LOGIN
 class Login(webapp2.RequestHandler):
     def get(self):
@@ -56,6 +53,5 @@ class AdminPage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
 ('/', Login),
-('/map', )
 
 ], debug=True)
