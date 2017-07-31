@@ -22,6 +22,9 @@ import random
 import urllib2
 import logging
 
+jinja_environment = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
 # LOGIN
 class Login(webapp2.RequestHandler):
     def get(self):
