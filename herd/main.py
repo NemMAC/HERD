@@ -66,11 +66,18 @@ class Map(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('map.html')
         self.response.out.write(template.render())
+#About
+
+class About(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('about.html')
+        self.response.out.write(template.render())
 
 
 app = webapp2.WSGIApplication([
 ('/', Login),
 ('/map', Map),
+('/about', About)
 
 
 ], debug=True)
