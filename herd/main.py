@@ -21,7 +21,8 @@ import json
 import random
 import urllib2
 import logging
-gangshit
+from google.appengine.api import users
+from google.appengine.ext import ndb
 
 # LOGIN
 class Login(webapp2.RequestHandler):
