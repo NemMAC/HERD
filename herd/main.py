@@ -22,7 +22,7 @@ import random
 import urllib2
 import logging
 
-
+# LOGIN
 class Login(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
