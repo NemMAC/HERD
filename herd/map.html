@@ -16,68 +16,197 @@
         margin: 0;
         padding: 0;
       }
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js">
-    </script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <nav class="navbar nav-pills nav-stacked navbar-light bg-faded">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-        <a class="navbar-brand" href="#">HERD</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav  mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="about">About<span class="sr-only">(current)</span></a>
-            </li>
+      #description {
+       font-family: Roboto;
+       font-size: 15px;
+       font-weight: 300;
+     }
 
-      <!--  <li class="nav-item active">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="input-group">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Search</button>
-                    </span>
-                    <input type="text" class="form-control" placeholder="Search for...">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div><
-                </div>
-              </div>
-            </li> -->
+     #infowindow-content .title {
+       font-weight: bold;
+     }
 
-            <!--<li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>-->
-          </ul>
-        </div>
-    </nav>
+     #infowindow-content {
+       display: none;
+     }
 
+     #map #infowindow-content {
+       display: inline;
+     }
+
+     .pac-card {
+       margin: 10px 10px 0 0;
+       border-radius: 2px 0 0 2px;
+       box-sizing: border-box;
+       -moz-box-sizing: border-box;
+       outline: none;
+       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+       background-color: #fff;
+       font-family: Roboto;
+     }
+
+     #pac-container {
+       padding-bottom: 12px;
+       margin-right: 12px;
+     }
+
+     .pac-controls {
+       display: inline-block;
+       padding: 5px 11px;
+     }
+
+     .pac-controls label {
+       font-family: Roboto;
+       font-size: 13px;
+       font-weight: 300;
+     }
+
+     #pac-input {
+       background-color: #fff;
+       font-family: Roboto;
+       font-size: 15px;
+       font-weight: 300;
+       margin-left: 12px;
+       padding: 0 11px 0 13px;
+       text-overflow: ellipsis;
+       width: 400px;
+     }
+
+     #pac-input:focus {
+       border-color: #4d90fe;
+     }
+
+     #title {
+       color: #fff;
+       background-color: #4d90fe;
+       font-size: 25px;
+       font-weight: 500;
+       padding: 6px 12px;
+     }
+     #target {
+       width: 345px;
+     }
+     </style>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js">
+     </script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+   </head>
+   <body>
+     <nav class="navbar nav-pills nav-stacked navbar-light bg-faded">
+       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+         <a class="navbar-brand" href="#">HERD</a>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+           <ul class="navbar-nav  mr-auto">
+             <li class="nav-item active">
+               <a class="nav-link" href="about">About<span class="sr-only">(current)</span></a>
+             </li>
+
+       <!--  <li class="nav-item active">
+               <div class="row">
+                 <div class="col-lg-6">
+                   <div class="input-group">
+                     <span class="input-group-btn">
+                       <button class="btn btn-default" type="button">Search</button>
+                     </span>
+                     <input type="text" class="form-control" placeholder="Search for...">
+                   </div>
+                 </div>
+                 <div class="col-lg-6">
+                   <div class="input-group">
+                     <input type="text" class="form-control" placeholder="Search for...">
+                     <span class="input-group-btn">
+                       <button class="btn btn-default" type="button">Go!</button>
+                     </span>
+                   </div><
+                 </div>
+               </div>
+             </li> -->
+
+             <!--<li class="nav-item">
+               <a class="nav-link" href="#">Link</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link disabled" href="#">Disabled</a>
+             </li>-->
+           </ul>
+         </div>
+     </nav>
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
     <button onclick="get_position()"> Get position </button>
     <script>
       var myLatlng = {lat: 47.6769, lng: -122.2060};
       var marker
       var map
+      function initAutocomplete() {
+        map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: myLatlng
+        });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }
 
       function initMap() {
-
-          map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: myLatlng
-        });
+        initAutocomplete();
 
           marker = new google.maps.Marker({
           position: myLatlng,
@@ -85,6 +214,7 @@
           draggable: true,
           title: 'Click to zoom'
         });
+
         }
         if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
@@ -113,6 +243,7 @@
 
             }
 
+
               function getposition(){
                 var p= {
                   'lat': marker.position.lat(),
@@ -123,6 +254,12 @@
 
 
               }
+
+
+
+
+
+
               if (navigator.geolocation) {
 
                   navigator.geolocation.getCurrentPosition(function(position) {
@@ -146,8 +283,8 @@
                   });
               }
         </script>
-      <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2bJ9Lfq_RCVzJLW8VdjqFY68UyD5wM2U&callback=initMap">
-    </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqfFWtnbLx-_DxklUJrXQOVUTnLG0nVe0&libraries=places&callback=initMap"
+          async defer>
+          </script>
   </body>
 </html>
