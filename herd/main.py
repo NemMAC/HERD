@@ -68,9 +68,17 @@ class Map(webapp2.RequestHandler):
         self.response.out.write(template.render())
 
 
+
+# DATASTORE
+class Store(webapp2.RequestHandler):
+    def post(self):
+
+
 app = webapp2.WSGIApplication([
 ('/', Login),
 ('/map', Map),
+('datastore', Store),
+
 
 
 ], debug=True)
