@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js">
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <button onclick="get_position()"> Get position </button>
+    <script>
+      var myLatlng = {lat: 47.6769, lng: -122.2060};
+      var marker
+      var map
+
+      function initMap() {
+
+          map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: myLatlng
+        });
+
+          marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          draggable: true,
+          title: 'Click to zoom'
+
+
+        });
+        function get_position() {
+          var p = {'lat': marker.position.lat(), 'lng': marker.position.lng()};
+          s = JSON.stringify(p);
+          $.post('/postposition','s');
+        }
