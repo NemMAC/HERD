@@ -70,5 +70,7 @@ class Map(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
 ('/', Login),
+('/map', Map),
+
 
 ], debug=True)
