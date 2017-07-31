@@ -21,6 +21,7 @@ import json
 import random
 import urllib2
 import logging
+gangshit
 
 # LOGIN
 class Login(webapp2.RequestHandler):
