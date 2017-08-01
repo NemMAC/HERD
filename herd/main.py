@@ -65,6 +65,12 @@ class Map(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('map.html')
         self.response.out.write(template.render())
+#About
+
+class About(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('about.html')
+        self.response.out.write(template.render())
 
 
 
@@ -77,6 +83,7 @@ class Location(ndb.Model):
 
 class Store(webapp2.RequestHandler):
     def post(self):
+<<<<<<< HEAD
         user = self.request.get('user')
         lat = self.request.get('lat')
         lng = self.request.get('lng')
@@ -89,13 +96,21 @@ class Store(webapp2.RequestHandler):
 
 
 
+=======
+        pass
+>>>>>>> 72752f038fa97ef8ab7ad660a3745ae26706ecf4
 
 
 app = webapp2.WSGIApplication([
 ('/', Login),
 ('/map', Map),
+<<<<<<< HEAD
 ('/datastore', Store),
 
 
+=======
+('/about', About),
+('/datastore', Store)
+>>>>>>> 72752f038fa97ef8ab7ad660a3745ae26706ecf4
 
 ], debug=True)
