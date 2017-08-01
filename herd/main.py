@@ -61,7 +61,6 @@ class AdminPage(webapp2.RequestHandler):
             self.response.write('You are not logged in.')
 
 # MAP
-
 class Map(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('map.html')
@@ -70,14 +69,32 @@ class Map(webapp2.RequestHandler):
 
 
 # DATASTORE
+
+class Location(ndb.Model):
+    user = ndb.StringProperty()
+    lat = ndb.StringProperty()
+    lng = ndb.StringProperty()
+
 class Store(webapp2.RequestHandler):
     def post(self):
+        user = self.request.get('user')
+        lat = self.request.get('lat')
+        lng = self.request.get('lng')
+        logging.info ('location got')
+
+        if user and lat and lng:
+            u = Location(user=user, lat=lat, lng=lng)
+            u.put()
+            logging.info('')
+
+
+
 
 
 app = webapp2.WSGIApplication([
 ('/', Login),
 ('/map', Map),
-('datastore', Store),
+('/datastore', Store),
 
 
 
