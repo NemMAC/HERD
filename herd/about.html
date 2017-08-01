@@ -3,8 +3,131 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+
+      #description {
+       font-family: material-design-iconic-font;
+       font-size: 15px;
+       font-weight: 300;
+     }
+     #infowindow-content .title {
+       font-weight: bold;
+     }
+     #infowindow-content {
+       display: none;
+     }
+     #map #infowindow-content {
+       display: inline;
+     }
+     .pac-card {
+       margin: 0px 10px 0 0;
+       border-radius: 2px 0 0 2px;
+       box-sizing: border-box;
+       -moz-box-sizing: border-box;
+       outline: none;
+       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+       background-color: #fff;
+       font-family: Roboto;
+     }
+     #pac-container {
+       padding-bottom: 0px;
+       margin-right: 12px;
+     }
+     .pac-controls {
+       display: inline-block;
+       padding: 5px 11px;
+     }
+     .pac-controls label {
+       font-family: Abel;
+       font-size: 13px;
+       font-weight: 300;
+     }
+     #pac-input {
+       font-family: Abel;
+       font-size: 15px;
+       font-weight: 300;
+       margin-left: 50vw;
+       margin-top: 17px;
+       padding: 0 11px 0 13px;
+       text-overflow: ellipsis;
+       width: 400px;
+     }
+     #pac-input:focus {
+       border-color: #4d90fe;
+     }
+     #title {
+       color: #fff;
+       background-color: #4d90fe;
+       font-size: 25px;
+       font-weight: 500;
+       padding: 6px 12px;
+     }
+     #target {
+       width: 345px;
+     }
+
+
+     #herdbrand{
+       font-family: Abel;
+       font-size: 35px;
+     }
+
+     .nav-link{
+       font-family: Abel;
+       font-size: 20px;
+     }
+
+     body {
+       background: url('kobeeee.jpg');
+       height: auto;
+       width: auto;
+     }
+
+     </style>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js">
+     </script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/js/mdb.min.js"></script>
+     <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+    </head>
+    <body background="http://www.pngmart.com/files/2/Kobe-Bryant-PNG-HD.png">
+
+     <!--Navbar-->
+    <nav class="navbar navbar-toggleable-md navbar-dark indigo" data-spy="affix" data-offset-top='45' >
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" id=herdbrand href="#">HERD</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="true" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <!-- Collapsible content -->
+    <div class="navbar-default" id="navbarSupportedContent">
+
+        <!-- Links -->
+        <ul class="navbar-nav nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="map">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about">About</a>
+            </li>
+    </div>
+    <!-- Collapsible content -->
+
+    </nav>
+    <!--/.Navbar-->
   </head>
   <body>
-
+    Test
   </body>
 </html>
