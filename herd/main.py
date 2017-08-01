@@ -77,19 +77,23 @@ class About(webapp2.RequestHandler):
 # DATASTORE
 
 class Location(ndb.Model):
-    user = ndb.StringProperty()
+    Id = ndb.StringProperty()
     lat = ndb.FloatProperty()
     lng = ndb.FloatProperty()
 
 class Store(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
+        Id = user.user_id()
+        logging.info ('user is: ')
+        logging.info (Id)
         if user:
             lat = float(self.request.get('lat'))
             lng = float(self.request.get('lng'))
-            user = str(self.request.get('user'))
             logging.info ('location got')
-            u = Location(user=user, lat=lat, lng=lng)
+            logging.info ('user is: ')
+            logging.info (Id)
+            u = Location(lat=lat, lng=lng, Id=Id)
             u.put()
             logging.info('location store')
 
