@@ -78,39 +78,29 @@ class About(webapp2.RequestHandler):
 
 class Location(ndb.Model):
     user = ndb.StringProperty()
-    lat = ndb.StringProperty()
-    lng = ndb.StringProperty()
+    lat = ndb.FloatProperty()
+    lng = ndb.FloatProperty()
 
 class Store(webapp2.RequestHandler):
     def post(self):
-<<<<<<< HEAD
-        user = self.request.get('user')
-        lat = self.request.get('lat')
-        lng = self.request.get('lng')
-        logging.info ('location got')
-
-        if user and lat and lng:
+        user = users.get_current_user()
+        if user:
+            lat = float(self.request.get('lat'))
+            lng = float(self.request.get('lng'))
+            user = str(self.request.get('user'))
+            logging.info ('location got')
             u = Location(user=user, lat=lat, lng=lng)
             u.put()
-            logging.info('')
+            logging.info('location store')
 
 
 
-=======
-        pass
->>>>>>> 72752f038fa97ef8ab7ad660a3745ae26706ecf4
 
 
 app = webapp2.WSGIApplication([
 ('/', Login),
 ('/map', Map),
-<<<<<<< HEAD
-('/datastore', Store),
-
-
-=======
 ('/about', About),
 ('/datastore', Store)
->>>>>>> 72752f038fa97ef8ab7ad660a3745ae26706ecf4
 
 ], debug=True)
