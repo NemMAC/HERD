@@ -26,7 +26,6 @@ from google.appengine.ext import ndb
 
 """
 Milans Space. Dont touch.
-
 """
 
 jinja_environment = jinja2.Environment(
