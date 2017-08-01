@@ -47,6 +47,8 @@ class Login(webapp2.RequestHandler):
 
         self.response.write(
             '<html><body>{}</body></html>'.format(greeting))
+        template = jinja_environment.get_template('cover.html')
+        self.response.out.write(template.render())
 
 class AdminPage(webapp2.RequestHandler):
     def get(self):
