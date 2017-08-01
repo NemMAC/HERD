@@ -21,19 +21,15 @@
        font-size: 15px;
        font-weight: 300;
      }
-
      #infowindow-content .title {
        font-weight: bold;
      }
-
      #infowindow-content {
        display: none;
      }
-
      #map #infowindow-content {
        display: inline;
      }
-
      .pac-card {
        margin: 10px 10px 0 0;
        border-radius: 2px 0 0 2px;
@@ -44,23 +40,19 @@
        background-color: #fff;
        font-family: Roboto;
      }
-
      #pac-container {
        padding-bottom: 12px;
        margin-right: 12px;
      }
-
      .pac-controls {
        display: inline-block;
        padding: 5px 11px;
      }
-
      .pac-controls label {
        font-family: Roboto;
        font-size: 13px;
        font-weight: 300;
      }
-
      #pac-input {
        background-color: #fff;
        font-family: Roboto;
@@ -71,11 +63,9 @@
        text-overflow: ellipsis;
        width: 400px;
      }
-
      #pac-input:focus {
        border-color: #4d90fe;
      }
-
      #title {
        color: #fff;
        background-color: #4d90fe;
@@ -146,31 +136,24 @@
         zoom: 15,
         center: myLatlng
         });
-
         // Create the search box and link it to the UI element.
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
         // Bias the SearchBox results towards current map's viewport.
         map.addListener('bounds_changed', function() {
           searchBox.setBounds(map.getBounds());
         });
-
         var markers = [];
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.
         searchBox.addListener('places_changed', function() {
           var places = searchBox.getPlaces();
-
           if (places.length == 0) {
             return;
           }
-
           // Clear out the old markers.
-
           markers = [];
-
           // For each place, get the icon, name and location.
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
@@ -185,7 +168,6 @@
               anchor: new google.maps.Point(17, 34),
               scaledSize: new google.maps.Size(25, 25)
             };
-
             // Create a marker for each place.
             markers.push(new google.maps.Marker({
               map: map,
@@ -193,7 +175,6 @@
               title: place.name,
               position: place.geometry.location
             }));
-
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
               bounds.union(place.geometry.viewport);
@@ -204,17 +185,14 @@
           map.fitBounds(bounds);
         });
       }
-
       function initMap() {
         initAutocomplete();
-
           marker = new google.maps.Marker({
           position: myLatlng,
           map: map,
           draggable: true,
           title: 'Click to zoom'
         });
-
         }
         if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
@@ -222,7 +200,6 @@
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                   };
-
                   marker.setPosition(pos);
                   map.setCenter(pos);
                 }, function() {
@@ -232,18 +209,13 @@
                 // Browser doesn't support Geolocation
                 handleLocationError(false, marker, map.getCenter());
               }
-
-
             function handleLocationError(browserHasGeolocation, marker, pos) {
               marker.setPosition(pos);
               marker.setContent(browserHasGeolocation ?
                                     'Error: The Geolocation service failed.' :
                                     'Error: Your browser doesn\'t support geolocation.');
               marker.open(map);
-
             }
-
-
               function getposition(){
                 var p= {
                   'lat': marker.position.lat(),
@@ -251,19 +223,9 @@
                 }
                 position=(JSON.stringify(p));
                  $.post('/postposition', position);
-
-
               }
-
-
-
-
-
-
               if (navigator.geolocation) {
-
                   navigator.geolocation.getCurrentPosition(function(position) {
-
                       $.ajax({
                           url: '/datastore',
                           data: {
@@ -276,7 +238,6 @@
                               // alert(result);
                           }
                       });
-
                       // Use the 2 lines below to center your map on user location (you need a map instance at this point)
                       userLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                       map.panTo(userLoc);
@@ -286,3 +247,5 @@
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqfFWtnbLx-_DxklUJrXQOVUTnLG0nVe0&libraries=places&callback=initMap"
           async defer>
           </script>
+  </body>
+</html>
