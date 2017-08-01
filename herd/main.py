@@ -76,25 +76,39 @@ class About(webapp2.RequestHandler):
 # DATASTORE
 
 class Location(ndb.Model):
-    Id = ndb.StringProperty()
+    UserID = ndb.StringProperty()
     lat = ndb.FloatProperty()
     lng = ndb.FloatProperty()
 
 class Store(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
-        Id = user.user_id()
+        UserID = user.user_id()
         logging.info ('user is: ')
-        logging.info (Id)
+        logging.info (UserID)
+
         if user:
             lat = float(self.request.get('lat'))
             lng = float(self.request.get('lng'))
             logging.info ('location got')
             logging.info ('user is: ')
-            logging.info (Id)
-            u = Location(lat=lat, lng=lng, Id=Id)
-            u.put()
+            logging.info (UserID)
+
+            k = Location.query(Location.UserID==user.user_id()).get()
+            # Let's first check if this user already exists in the database
+            # If they do, get that entry (its key) and modify it
+            if k:
+                instance = k
+                instance.lat = lat
+                instance.lng = lng
+            else:
+                instance = Location(UserID=user.user_id(), lat=lat, lng=lng)
+            instance.put()
             logging.info('location store')
+
+
+
+
 
 
 
