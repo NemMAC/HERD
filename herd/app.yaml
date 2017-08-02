@@ -11,10 +11,15 @@ handlers:
 
 - url: /res
   static_dir: www
-- url: /stylesheets
-  static_dir: CSS
+- url: /css
+  static_dir: css
+- url: /video
+  static_dir: video
+- url: /js
+  static_dir: js
 - url: .*
   script: main.app
+
 
 libraries:
 - name: webapp2
