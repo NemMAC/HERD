@@ -244,6 +244,46 @@
                           },
                           type: 'POST',
                           success: function (result) {
+                            $.ajax({
+                              url: '/datastore',
+                              data: {
+                                'lat':resultdict.lat,
+                                'lng':resultdict.lng
+                              },
+                              type: 'GET',
+                              success: function(results) {
+                                console.log(lat)
+                                console.log(lng)
+                              }
+                          })
+  //    .then(function(otheruser) {
+  //      // If we get to this point, we received data successfully from the backend. We
+  //      // need to first turn it into an object (a list in this case), then loop
+  //      // on its elements and create a marker on the map
+  //      lat = JSON.parse(lat);
+  //      lng = JSON.parse(lng);
+  //      results.forEach(l => {
+  //        l = {'lat': parseFloat(l.lat), 'lng': parseFloat(l.lng)};
+  //        new google.maps.Marker({map: map, position: l});
+  //      });
+  //    });
+  //  marker = new google.maps.Marker({
+  //    draggable: true,
+  //    map: map,
+  //  });
+                            // results = JSON.parse(results);
+                            // results.forEach(r => {
+                            //   r = {'lat': parseFloat(r.lat), 'lng':parseFloat(r.lng)};
+                            //   new google.maps.Marker({map: map, position: r}); });
+                            //   });
+                            // marker = new google.maps.Marker({
+                            //   draggable: false,
+                            //   map: map,
+
+                            // });
+
+
+
                               // If your backend page sends something back
                               // alert(result);
                           }
@@ -252,10 +292,29 @@
                       userLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                       map.panTo(userLoc);
                   });
-              }
+  }
+  // var drawingManager = new google.maps.drawing.DrawingManager({
+  //   drawingMode: google.maps.drawing.OverlayType.MARKER,
+  //   drawingControl: true,
+  //   drawingControlOptions: {
+  //     position: google.maps.ControlPosition.TOP_CENTER,
+  //     drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
+  //   },
+  //   markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
+  //   circleOptions: {
+  //     fillColor: '#ffff00',
+  //     fillOpacity: 1,
+  //     strokeWeight: 5,
+  //     clickable: false,
+  //     editable: true,
+  //     zIndex: 1
+  //   }
+  // });
+  // drawingManager.setMap(map);
         </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqfFWtnbLx-_DxklUJrXQOVUTnLG0nVe0&libraries=places&callback=initMap"
           async defer>
           </script>
+
   </body>
 </html>

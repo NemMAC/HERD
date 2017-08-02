@@ -64,10 +64,6 @@ class AdminPage(webapp2.RequestHandler):
 # MAP
 class Map(webapp2.RequestHandler):
     def get(self):
-        query = Location.query()
-        results = query.fetch()
-        logging.info('result is: ')
-        logging.info(results)
         template = jinja_environment.get_template('map.html')
         self.response.out.write(template.render())
 
@@ -113,6 +109,13 @@ class Store(webapp2.RequestHandler):
             update.put()
             logging.info('location store')
 
+    def get(self):
+        query = Location.query()
+        results = query.fetch()
+        resultdict = [i.to_dict() for i in results]
+        self.response.out.write(json.dumps(resultdict))
+        logging.info('result is: ')
+        logging.info(results)
 
 
 
