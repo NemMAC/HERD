@@ -64,8 +64,13 @@ class AdminPage(webapp2.RequestHandler):
 # MAP
 class Map(webapp2.RequestHandler):
     def get(self):
+        query = Location.query()
+        results = query.fetch()
+        logging.info('result is: ')
+        logging.info(results)
         template = jinja_environment.get_template('map.html')
         self.response.out.write(template.render())
+
 #About
 
 class About(webapp2.RequestHandler):
@@ -96,19 +101,17 @@ class Store(webapp2.RequestHandler):
             logging.info ('user is: ')
             logging.info (UserID)
 
-            k = Location.query(Location.UserID==user.user_id()).get()
+            exist = Location.query(Location.UserID==user.user_id()).get()
             # Let's first check if this user already exists in the database
             # If they do, get that entry (its key) and modify it
-            if k:
-                instance = k
-                instance.lat = lat
-                instance.lng = lng
+            if exist:
+                update = exist
+                update.lat = lat
+                update.lng = lng
             else:
-                instance = Location(UserID=user.user_id(), lat=lat, lng=lng)
-            instance.put()
+                update = Location(UserID=user.user_id(), lat=lat, lng=lng)
+            update.put()
             logging.info('location store')
-
-
 
 
 
