@@ -47,6 +47,8 @@ class Login(webapp2.RequestHandler):
 
         self.response.write(
             '<html><body>{}</body></html>'.format(greeting))
+        template = jinja_environment.get_template('cover.html')
+        self.response.out.write(template.render())
 
 class AdminPage(webapp2.RequestHandler):
     def get(self):
@@ -99,16 +101,16 @@ class Store(webapp2.RequestHandler):
             logging.info ('user is: ')
             logging.info (UserID)
 
-            exist = Location.query(Location.UserID==user.user_id()).get()
+            k = Location.query(Location.UserID==user.user_id()).get()
             # Let's first check if this user already exists in the database
             # If they do, get that entry (its key) and modify it
-            if exist:
-                update = exist
-                update.lat = lat
-                update.lng = lng
+            if k:
+                instance = k
+                instance.lat = lat
+                instance.lng = lng
             else:
-                update = Location(UserID=user.user_id(), lat=lat, lng=lng)
-            update.put()
+                instance = Location(UserID=user.user_id(), lat=lat, lng=lng)
+            instance.put()
             logging.info('location store')
 
 
