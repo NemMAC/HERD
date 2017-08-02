@@ -42,7 +42,7 @@ class Login(webapp2.RequestHandler):
             greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(
                 nickname, logout_url)
         else:
-            login_url = users.create_login_url('/')
+            login_url = users.create_login_url('/map')
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
 
         self.response.write(
@@ -115,7 +115,7 @@ class Store(webapp2.RequestHandler):
         resultdict = [i.to_dict() for i in results]
         self.response.out.write(json.dumps(resultdict))
         logging.info('result is: ')
-        logging.info(results)
+        logging.info(resultdict)
 
 
 

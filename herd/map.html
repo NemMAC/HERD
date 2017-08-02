@@ -243,19 +243,40 @@
                               'lng': position.coords.longitude
                           },
                           type: 'POST',
-                          success: function (result) {
-                            $.ajax({
-                              url: '/datastore',
-                              data: {
-                                'lat':resultdict.lat,
-                                'lng':resultdict.lng
-                              },
-                              type: 'GET',
-                              success: function(results) {
-                                console.log(lat)
-                                console.log(lng)
-                              }
-                          })
+                          success: function (resultdict) {
+                            $.ajax('datastore')
+            .then(function(resultdict) {
+            // If we get to this point, we received data successfully from the backend. We
+            // need to first turn it into an object (a list in this case), then loop
+            // on its elements and create a marker on the map
+
+            resultdict = JSON.parse(resultdict);
+            // resultdict.foreach(l=>{
+            //   l = {'lat':parseFloat(l.lat), 'lng':parseFloat(l.lng)}
+            // })
+            console.log(resultdict);
+            resultdict.forEach(l => {
+              l = {'lat': parseFloat(l.lat), 'lng': parseFloat(l.lng)};
+              new google.maps.Marker({map: map, position: l});
+            });
+          });
+        marker = new google.maps.Marker({
+          draggable: true,
+          map: map,
+        });
+
+                          //   $.ajax({
+                          //     url: '/datastore',
+                          //     data: {
+                          //       'lat':resultdict["lat"],
+                          //       'lng':resultdict["lng"]
+                          //     },
+                          //     type: 'GET',
+                          //     success: function(results) {
+                          //       console.log(lat)
+                          //       console.log(lng)
+                          //     }
+                          // })
   //    .then(function(otheruser) {
   //      // If we get to this point, we received data successfully from the backend. We
   //      // need to first turn it into an object (a list in this case), then loop
