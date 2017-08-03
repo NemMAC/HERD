@@ -1,14 +1,16 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Map Stuff Stuff</title>
+    <title>Map</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 90%;
+        height: 100%;
+        margin-top: 80px;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -31,8 +33,8 @@
        display: inline;
      }
      .pac-card {
-       margin: 0px 10px 0 0;
-       border-radius: 2px 0 0 2px;
+       margin: 0px 0px 0 0;
+       border-radius: 0px 0 0 0px;
        box-sizing: border-box;
        -moz-box-sizing: border-box;
        outline: none;
@@ -42,11 +44,11 @@
      }
      #pac-container {
        padding-bottom: 0px;
-       margin-right: 12px;
+       margin-right: 0px;
      }
      .pac-controls {
        display: inline-block;
-       padding: 5px 11px;
+       padding: 0px 11px;
      }
      .pac-controls label {
        font-family: Abel;
@@ -58,11 +60,11 @@
        font-family: Abel;
        font-size: 15px;
        font-weight: 300;
-       margin-left: 50vw;
-       margin-top: 17px;
-       padding: 0 11px 0 13px;
+       margin-left: 0;
+       margin-top: 25px;
+       padding: 0 0px 0 0px;
        text-overflow: ellipsis;
-       width: 400px;
+       width: 200px;
      }
      #pac-input:focus {
        border-color: #4d90fe;
@@ -94,48 +96,18 @@
      </style>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js">
      </script>
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css">
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/js/mdb.min.js"></script>
-     <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
-   </head>
+     <!-- load stylesheets -->
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+     <!-- Google web font "Open Sans" -->
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+     <!-- Bootstrap style -->
+     <link rel="stylesheet" href="css/hero-slider-style.css">
+     <!-- Hero slider style (https://codyhouse.co/gem/hero-slider/) -->
+     <link rel="stylesheet" href="css/magnific-popup.css">
+     <!-- Magnific popup style (http://dimsemenov.com/plugins/magnific-popup/) -->
+     <link rel="stylesheet" href="css/tooplate-style.css">
+     <!-- Tooplate style -->
    <body>
-<<<<<<< HEAD
-     <!--Navbar-->
-<nav class="navbar navbar-toggleable-md navbar-dark indigo" data-spy="affix" data-offset-top='45' >
-
-    <!-- Navbar brand -->
-    <a class="navbar-brand" id=herdbrand href="/">HERD</a>
-
-    <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="true" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
-    <!-- Collapsible content -->
-    <div class="navbar-default" id="navbarSupportedContent">
-
-        <!-- Links -->
-        <ul class="navbar-nav nav mr-auto">
-          <li class="nav-item">
-              <a class="nav-link" href="map">Map</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="about">About</a>
-          </li>
-              <form class="form-inline">
-                  <input id="pac-input" class="controls mr-sm-2" type="text" placeholder="Search Location">
-              </form>
-            </li>
-        </ul>
-        <!-- Search form -->
-
-    </div>
-    <!-- Collapsible content -->
-
-</nav>
-<!--/.Navbar-->
-=======
      <!-- Navigation -->
      <div class="cd-slider-nav">
          <div class="container">
@@ -300,7 +272,6 @@
                </script>
 
 
->>>>>>> 92af3e183e27e29f7816fb2daa3fc047994a4e6e
 
     <div id="map"></div>
     <button onclick="get_position()"> Get position </button>
@@ -364,12 +335,12 @@
       }
       function initMap() {
         initAutocomplete();
-          marker = new google.maps.Marker({
-          position: myLatlng,
-          map: map,
-          draggable: true,
-          title: 'Click to zoom'
-        });
+          // marker = new google.maps.Marker({
+          // position: myLatlng,
+          // map: map,
+          // draggable: true,
+          // title: 'Click to zoom'
+        // });
         }
         if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
@@ -377,6 +348,19 @@
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                   };
+                  var rectangle = new google.maps.Rectangle({
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.35,
+                    map: map,
+                    bounds: {
+                      north: pos.lat+0.0005,
+                      south: pos.lat-0.0005,
+                      east: pos.lng + 0.0005,
+                      west: pos.lng -0.0005
+    }})
                   marker.setPosition(pos);
                   map.setCenter(pos);
                 }, function() {
@@ -427,88 +411,22 @@
               new google.maps.Marker({map: map, position: l});
             });
           });
+
         marker = new google.maps.Marker({
           draggable: true,
           map: map,
+        
+
         });
 
-                          //   $.ajax({
-                          //     url: '/datastore',
-                          //     data: {
-                          //       'lat':resultdict["lat"],
-                          //       'lng':resultdict["lng"]
-                          //     },
-                          //     type: 'GET',
-                          //     success: function(results) {
-                          //       console.log(lat)
-                          //       console.log(lng)
-                          //     }
-                          // })
-  //    .then(function(otheruser) {
-  //      // If we get to this point, we received data successfully from the backend. We
-  //      // need to first turn it into an object (a list in this case), then loop
-  //      // on its elements and create a marker on the map
-  //      lat = JSON.parse(lat);
-  //      lng = JSON.parse(lng);
-  //      results.forEach(l => {
-  //        l = {'lat': parseFloat(l.lat), 'lng': parseFloat(l.lng)};
-  //        new google.maps.Marker({map: map, position: l});
-  //      });
-  //    });
-  //  marker = new google.maps.Marker({
-  //    draggable: true,
-  //    map: map,
-  //  });
-                            // results = JSON.parse(results);
-                            // results.forEach(r => {
-                            //   r = {'lat': parseFloat(r.lat), 'lng':parseFloat(r.lng)};
-                            //   new google.maps.Marker({map: map, position: r}); });
-                            //   });
-                            // marker = new google.maps.Marker({
-                            //   draggable: false,
-                            //   map: map,
-
-                            // });
-
-
-
-                              // If your backend page sends something back
-                              // alert(result);
-                          }
+                        }
                       });
                       // Use the 2 lines below to center your map on user location (you need a map instance at this point)
                       userLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                       map.panTo(userLoc);
-                  });
 
-        // var poly;
-        // var map;
-        // poly = new google.maps.Polyline({
-        //     strokeColor: '#000000',
-        //     strokeOpacity: 1.0,
-        //     strokeWeight: 3
-        //   });
-        //   poly.setMap(map);
-        //
-        //   // Add a listener for the click event
-        //   map.addListener('click', addLatLng);
-        // }
-        //
-        // // Handles click events on a map, and adds a new point to the Polyline.
-        // function addLatLng(event) {
-        //   var path = poly.getPath();
-        //
-        //   // Because path is an MVCArray, we can simply append a new coordinate
-        //   // and it will automatically appear.
-        //   path.push(event.latLng);
-        //
-        //   // Add a new marker at the new plotted point on the polyline.
-        //   var marker = new google.maps.Marker({
-        //     position: event.latLng,
-        //     title: '#' + path.getLength(),
-        //     map: map
-        //   });
-        }
+                  });
+}
 
         </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqfFWtnbLx-_DxklUJrXQOVUTnLG0nVe0&libraries=places&callback=initMap"
