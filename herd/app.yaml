@@ -19,6 +19,8 @@ handlers:
   static_dir: js
 - url: .*
   script: main.app
+  login: required
+
 
 
 libraries:
