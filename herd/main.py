@@ -65,6 +65,7 @@ class AdminPage(webapp2.RequestHandler):
 class Map(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('map.html')
+        # template = jinja_environment.get_template('drawing.html')
         self.response.out.write(template.render())
 
 #About

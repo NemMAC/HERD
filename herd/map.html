@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -357,6 +358,7 @@ var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
                     lng: position.coords.longitude
                   };
                   var rectangle = new google.maps.Rectangle({
+<<<<<<< HEAD
                   strokeColor: 'blue',
                   strokeOpacity: 0.8,
                   strokeWeight: 2,
@@ -375,6 +377,20 @@ window.east = pos.lng + 0.0005
 window.west = pos.lng -0.0005
 
 
+=======
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.35,
+                    map: map,
+                    bounds: {
+                      north: pos.lat+0.0005,
+                      south: pos.lat-0.0005,
+                      east: pos.lng + 0.0005,
+                      west: pos.lng -0.0005
+    }})
+>>>>>>> 95f1cc43df3a293a05e7960d80ace802b5e9b8ec
                   marker.setPosition(pos);
                   map.setCenter(pos);
                 }, function() {
@@ -411,6 +427,7 @@ window.west = pos.lng -0.0005
                           type: 'POST',
                           success: function (resultdict) {
                             $.ajax('datastore')
+<<<<<<< HEAD
 
                       .then(function(resultdict) {
                               var near = []
@@ -482,11 +499,39 @@ window.west = pos.lng -0.0005
                               // If your backend page sends something back
                               // alert(result);
                           }
+=======
+            .then(function(resultdict) {
+            // If we get to this point, we received data successfully from the backend. We
+            // need to first turn it into an object (a list in this case), then loop
+            // on its elements and create a marker on the map
+
+            resultdict = JSON.parse(resultdict);
+            // resultdict.foreach(l=>{
+            //   l = {'lat':parseFloat(l.lat), 'lng':parseFloat(l.lng)}
+            // })
+            console.log(resultdict);
+            resultdict.forEach(l => {
+              l = {'lat': parseFloat(l.lat), 'lng': parseFloat(l.lng)};
+              new google.maps.Marker({map: map, position: l});
+            });
+          });
+
+        marker = new google.maps.Marker({
+          draggable: true,
+          map: map,
+        
+
+        });
+
+                        }
+>>>>>>> 95f1cc43df3a293a05e7960d80ace802b5e9b8ec
                       });
                       // Use the 2 lines below to center your map on user location (you need a map instance at this point)
                       userLoc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                       map.panTo(userLoc);
+
                   });
+<<<<<<< HEAD
   }
 
   // var drawingManager = new google.maps.drawing.DrawingManager({
@@ -507,6 +552,10 @@ window.west = pos.lng -0.0005
   //   }
   // });
   // drawingManager.setMap(map);
+=======
+}
+
+>>>>>>> 95f1cc43df3a293a05e7960d80ace802b5e9b8ec
         </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqfFWtnbLx-_DxklUJrXQOVUTnLG0nVe0&libraries=places&callback=initMap"
           async defer>
