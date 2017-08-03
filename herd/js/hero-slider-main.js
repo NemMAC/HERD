@@ -46,7 +46,7 @@ jQuery(document).ready(function($){
 				setAutoplay(slidesWrapper, slidesNumber, autoPlayDelay);
 			}
 		});
-	
+
 
 	function nextSlide(visibleSlide, container, pagination, n){
 		visibleSlide.removeClass('selected from-left from-right').addClass('is-moving').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
@@ -138,4 +138,3 @@ jQuery(document).ready(function($){
 	    });
 	    return this;
 	};
-});

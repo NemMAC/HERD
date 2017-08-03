@@ -285,6 +285,7 @@
       var myLatlng = {lat: 47.6769, lng: -122.2060};
       var marker
       var map
+      var x
 var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
       function initAutocomplete() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -355,6 +356,25 @@ var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                   };
+                  var rectangle = new google.maps.Rectangle({
+                  strokeColor: 'blue',
+                  strokeOpacity: 0.8,
+                  strokeWeight: 2,
+                  fillColor: 'blue',
+                  fillOpacity: 0.35,
+                  map: map,
+                  bounds: {
+                    north: pos.lat+0.0005,
+                    south: pos.lat-0.0005,
+                    east: pos.lng + 0.0005,
+                    west: pos.lng -0.0005
+  }})
+window.north = pos.lat+0.0005
+window.south = pos.lat-0.0005
+window.east = pos.lng + 0.0005
+window.west = pos.lng -0.0005
+
+
                   marker.setPosition(pos);
                   map.setCenter(pos);
                 }, function() {
@@ -391,28 +411,35 @@ var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
                           type: 'POST',
                           success: function (resultdict) {
                             $.ajax('datastore')
-            .then(function(resultdict) {
-            // If we get to this point, we received data successfully from the backend. We
-            // need to first turn it into an object (a list in this case), then loop
-            // on its elements and create a marker on the map
 
-            resultdict = JSON.parse(resultdict);
-            // resultdict.foreach(l=>{
-            //   l = {'lat':parseFloat(l.lat), 'lng':parseFloat(l.lng)}
-            // })
-            console.log(resultdict);
-            resultdict.forEach(l => {
-              l = {'lat': parseFloat(l.lat), 'lng': parseFloat(l.lng)};
-              new google.maps.Marker({map: map, position: l, icon:'res/icon.png'});
-            });
-          });
+                      .then(function(resultdict) {
+                              var near = []
+                            // If we get to this point, we received data successfully from the backend. We
+                            // need to first turn it into an object (a list in this case), then loop
+                            // on its elements and create a marker on the map
+
+                            resultdict = JSON.parse(resultdict);
+                            // resultdict.foreach(l=>{
+                            //   l = {'lat':parseFloat(l.lat), 'lng':parseFloat(l.lng)}
+                            // })
+                            console.log(resultdict);
+                            resultdict.forEach(l => {
+                              l = {'lat': parseFloat(l.lat), 'lng': parseFloat(l.lng)};
+                              new google.maps.Marker({map: map, position: l, icon:'res/icon.png'});
+                              if (l.lat < north && l.lat > south && l.lng < east && l.lng > west){
+                                near.push('item')
+                                console.log(near.length)
+
+                            }});
+                            alert('There are ' + (near.length-1) +' other HERDERS in your area!')
+                          });
         marker = new google.maps.Marker({
           draggable: true,
           map: map,
           icon: 'res/icon.png'
         });
 
-                          //   $.ajax({
+                          //   $.ajax({ icon:'res/icon.png'
                           //     url: '/datastore',
                           //     data: {
                           //       'lat':resultdict["lat"],
